@@ -1,0 +1,25 @@
+package labb4;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+
+public class BottomPanel extends HBox {
+
+    private Button clearButton = new Button ("Rensa"); //Detta är vad som kommer stå på knappen
+
+    public BottomPanel(int width, int height, PaintSurface paintSurface) {
+        this.setPrefWidth(width); //Anger bredden på panelen och att den ska gå längs med hela
+        this.setLayoutY(height-53); //Anger var panelen ska vara placerad.
+        this.setBackground(new Background(new BackgroundFill(Color.BEIGE,null,null))); //Anger bakgrundsfärgen på panelen
+        this.getChildren().add(clearButton); //getChildren fungerar som en gren på ett träd och används för att lägga till föremål på panelen på skärmen
+
+        clearButton.setOnMouseClicked(event -> { //Rensar allt,  kallar på paintsurface som låter oss rensa allt.
+            paintSurface.clear();
+        });
+    }
+
+}
