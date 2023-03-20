@@ -21,7 +21,7 @@ public class ColorButton extends Canvas {
         if (myColor == model.getCurrentColor()) {
             GraphicsContext gc = getGraphicsContext2D();
             gc.setStroke(Color.BLACK);
-            gc.setLineWidth(3);
+            gc.setLineWidth(5);
             gc.strokeRect(0, 0, size, size);
             model.setCurrentColor(myColor);
         }
