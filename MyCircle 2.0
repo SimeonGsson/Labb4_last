@@ -1,0 +1,16 @@
+package labb5;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+public class MyCircle extends Shape {
+
+    public MyCircle(double x, double y, Color color) {
+        super(x, y, color);
+    }
+
+    public void drawYourself(GraphicsContext context, int size) {
+        context.setFill(getColor());
+        context.fillOval(getX(), getY(), size, size);
+    }
+
+}
