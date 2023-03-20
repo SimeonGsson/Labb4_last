@@ -1,0 +1,28 @@
+package labb4;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+//import javafx.scene.control.Button;
+
+public class ShapeButton extends Canvas {
+    private static int size = 30;
+
+    public ShapeButton(Model model, Shape shape, SidePanel sidepanel) {
+        super(size, size);
+
+        GraphicsContext context = getGraphicsContext2D();
+        shape.drawYourself(context, 30);
+
+        if (model.getCurrentShape() == shape) {
+            context.setLineWidth(3);
+            context.setStroke(Color.RED);
+            context.strokeRect(0, 0, size, size);
+        }
+
+        setOnMouseClicked(event -> {
+            model.setCurrentShape(shape);
+        });
+
+    }
+
+}
