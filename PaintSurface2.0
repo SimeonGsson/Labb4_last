@@ -1,0 +1,48 @@
+package labb4;
+
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+
+public class PaintSurface extends Canvas {
+
+    private Model myModel;
+    private GraphicsContext gc = this.getGraphicsContext2D();
+    private int width, height;
+
+    public PaintSurface(Model myModel, int height, int width) { // konstruktor för paintsurface, vad paintsurface
+        // behöver
+        super(height, width);
+        this.height = height;
+        this.width = width;
+        this.myModel = myModel;
+
+        this.setOnMouseClicked(event -> { // när man klickar på paintsurface (ritytan), så utförs metoden
+            draw(event);
+        });
+        this.setOnMouseDragged(event -> { // samma som ovan
+            draw(event);
+        });
+    }
+
+    public void draw(MouseEvent event) {
+        Shape shape = myModel.getCurrentShape();
+        Color color = myModel.getCurrentColor();
+
+        if (shape instanceof MyCircle) {
+            shape = new MyCircle((int) event.getX(), (int) event.getY(), color);
+        } else if (shape instanceof MySquare) {
+            shape = new MySquare((int) event.getX(), (int) event.getY(), color);
+        } else if (shape instanceof MyTriangle) {
+            shape = new MyTriangle((int) event.getX(), (int) event.getY(), color);
+        }
+        shape.drawYourself(gc, 25);
+        myModel.add(shape);
+    }
+
+    public void clear() { // rensar hela skärmen(0,0,width,height =
+        // var vi börjar och slutar x o y)
+        gc.clearRect(0, 0, width, height);
+}
+}
