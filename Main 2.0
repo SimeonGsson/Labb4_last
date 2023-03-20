@@ -1,0 +1,51 @@
+package labb4;
+
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage primarystage) throws Exception {
+
+        int height = 800;
+        int width = 800;
+
+        Color color = null;
+        Shape shape = null;
+        Group group = new Group();
+
+        group.getChildren().add(paintSurface);
+        group.getChildren().add(bottomPanel);
+        group.getChildren().add(sidePanel);
+        //group.getChildren().add(colorButton);
+
+        Model model = new Model(shape, color);
+        PaintSurface paintSurface = new PaintSurface(height, width, model);
+        BottomPanel bottomPanel = new BottomPanel(width, height, paintSurface);
+        SidePanel sidePanel = new SidePanel(height, width, model, null);
+        sidePanel.printOptions(model);
+        //ColorsShapes colorsShapes = new ColorsShapes(model, sidePanel);
+        // ColorButton colorButton = new ColorButton(color, model) ;    //ska denna va me här?
+        //ShapeButton shapeButton = new ShapeButton(model, shape);
+
+
+        primarystage.setTitle("Välkommen till ritprogrammet!");
+        primarystage.setHeight(height); // Höjden blir 800 pixlar
+        primarystage.setWidth(width); // Bredden blir 800 pixlar
+
+        Scene theScene = new Scene(group); // skapar en scen åt layouten
+        primarystage.setScene(theScene); // sätter scenen i fönstret
+        primarystage.setResizable(false);
+        primarystage.show(); // säger till fönstret att rita ut sig
+
+    }
+
+}
