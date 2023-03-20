@@ -1,0 +1,17 @@
+package labb4;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+public class MySquare extends Shape {
+
+    public MySquare(double x, double y, Color color) {
+        super(x, y, color);
+    }
+
+    public void drawYourself(GraphicsContext context, int size) {
+        context.setFill(getColor());
+        context.fillRect(getX(), getY(), size, size);
+    }
+
+}
