@@ -1,0 +1,36 @@
+package labb4;
+import java.util.ArrayList;
+
+import javafx.scene.paint.Color;
+
+public class Model {
+
+    private ArrayList<Shape> shapes = new ArrayList<Shape>(); // Arraylist på olika fomer
+    private Shape currentShape;
+    private Color currentColor;
+
+    public Model(Shape shape, Color color) { // osäker på denna
+        this.setCurrentShape(shape);
+        this.setCurrentColor(color);
+    }
+
+    public Shape getCurrentShape() {
+        return currentShape;
+    }
+
+    public void setCurrentShape(Shape shape) {
+        this.currentShape = shape;
+    }
+
+    public Color getCurrentColor() {
+        return currentColor;
+    }
+
+    public void setCurrentColor(Color color) {
+        currentColor = color;
+    }
+
+    public void add(Shape shape) {
+        shapes.add(shape);
+    }
+}
