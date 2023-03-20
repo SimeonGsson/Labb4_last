@@ -1,0 +1,64 @@
+package labb4;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.control.Label;
+import javafx.geometry.Pos;
+import java.util.ArrayList;
+
+public class SidePanel extends VBox {
+
+    private Color[] colors = { Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE,
+            Color.PURPLE, Color.WHITE, Color.BLACK };
+    private Shape[] shapes = { new MyCircle(0, 0, Color.BLACK), new MySquare(0, 0, Color.BLACK),
+            new MyTriangle(0, 0, Color.BLACK) };
+    private ArrayList<ColorButton> colorPanel = new ArrayList<ColorButton>();
+    private ArrayList<ShapeButton> shapePanel = new ArrayList<ShapeButton>();
+
+    public SidePanel(int height, int width, Model model, Color myColor) {
+        this.setPrefHeight(height);
+        this.setPrefWidth(60);
+        this.setLayoutX(width - 65);
+        this.setBackground(new Background(new BackgroundFill(Color.BEIGE, null, null)));
+
+        setSpacing(7);
+        setAlignment(Pos.BASELINE_CENTER);
+
+        setOnMouseClicked(event -> {
+            getChildren().clear();
+            printOptions(model);
+
+        });
+    }
+
+    getChildren().add(new Label("Shapes"));
+        for (Shape myShape : shapes) {
+        ShapeButton button = new ShapeButton(model, myShape, this);
+        shapePanel.add(button);
+        this.getChildren().add(button);
+
+        }
+
+    public void printOptions(Model model) {
+        getChildren().add(new Label("Colors"));
+        for (Color myColor : colors) {
+            ColorButton button = new ColorButton(myColor, model, this);
+            colorPanel.add(button);
+            this.getChildren().add(button);
+
+             }
+        }
+
+
+    public ArrayList<ShapeButton> getShapes() {
+        return shapePanel;
+    }
+
+
+    public ArrayList<ColorButton> getColors() {
+        return colorPanel;
+    }
+
+
+}
