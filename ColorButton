@@ -1,0 +1,29 @@
+package labb4;
+import javafx.scene.paint.Color;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+
+
+public class ColorButton extends Canvas {
+    private static int size = 30;
+
+    public ColorButton(Color myColor, Model model, SidePanel sidepanel) {
+        super(size, size);
+
+        GraphicsContext graphContext = getGraphicsContext2D();
+        graphContext.setFill(myColor);
+        graphContext.fillRect(0, 0, size, size);
+
+        setOnMouseClicked(event -> {
+            model.setCurrentColor(myColor);
+        });
+
+        if (myColor == model.getCurrentColor()) {
+            GraphicsContext gc = getGraphicsContext2D();
+            gc.setStroke(Color.BLACK);
+            gc.setLineWidth(3);
+            gc.strokeRect(0, 0, size, size);
+            model.setCurrentColor(myColor);
+        }
+    }
+}
