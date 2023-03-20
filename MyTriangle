@@ -1,0 +1,18 @@
+package labb4;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+public class MyTriangle extends Shape {
+
+    public MyTriangle(double x, double y, Color color) {
+        super(x, y, color);
+    }
+
+    public void drawYourself(GraphicsContext context, int size) {
+        context.setFill(getColor());
+        context.fillPolygon(new double[] { getX(), getX() + size, getX() + size / 2 },
+                new double[] { getY() + size, getY() + size, getY() }, 3);
+    }
+
+}
